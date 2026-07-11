@@ -50,6 +50,11 @@ function roomPath(segment: string) {
   return `restaurants/${CLOUD_ROOM_ID}/${segment}`;
 }
 
+/** Firebase Realtime Database does not accept undefined properties. */
+function firebaseSafe<T>(value: T): T {
+  return JSON.parse(JSON.stringify(value)) as T;
+}
+
 function toMap<T extends { id: string }>(list: T[]): Record<string, T> {
   const map: Record<string, T> = {};
   for (const item of list) map[item.id] = item;
@@ -177,8 +182,12 @@ export async function upsertCloudOrder(order: Order): Promise<boolean> {
   if (!database) return false;
 
   try {
+    const safeOrder = firebaseSafe(order);
     await Promise.all([
-      set(ref(database, `${roomPath('state/orders')}/${order.id}`), order),
+      set(
+        ref(database, `${roomPath('state/orders')}/${order.id}`),
+        safeOrder,
+      ),
       set(ref(database, roomPath('state/updatedAt')), Date.now()),
     ]);
     return true;
@@ -196,10 +205,11 @@ export async function upsertCloudRequest(
   if (!database) return false;
 
   try {
+    const safeRequest = firebaseSafe(request);
     await Promise.all([
       set(
         ref(database, `${roomPath('state/requests')}/${request.id}`),
-        request,
+        safeRequest,
       ),
       set(ref(database, roomPath('state/updatedAt')), Date.now()),
     ]);

@@ -20,7 +20,16 @@
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
-  </head>
+  
+<script>
+  if (!window.location.search && !window.location.hash) {
+    window.location.replace(
+      window.location.pathname + '?table=12&entry=restaurant'
+    );
+  }
+</script>
+
+</head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>

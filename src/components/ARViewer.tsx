@@ -7,7 +7,8 @@ import {
   ZoomOut,
   ShoppingBag,
   Info,
-  Maximize2,
+  Camera,
+  ScanLine,
 } from 'lucide-react';
 import { useApp } from '@/store/AppContext';
 import { useDish } from '@/hooks/useFilteredDishes';
@@ -60,6 +61,7 @@ export function ARViewer() {
   const [zoom, setZoom] = useState(1);
   const [justAdded, setJustAdded] = useState(false);
   const [showHint, setShowHint] = useState(true);
+  const [openingCamera, setOpeningCamera] = useState(false);
 
   // Prevent Android Chrome pull-to-refresh while using AR gestures.
   useEffect(() => {
@@ -160,6 +162,22 @@ export function ARViewer() {
 
   const goToCart = () => setView('cart');
 
+  const viewOnTable = async () => {
+    const viewer = viewerRef.current as HTMLElement & {
+      activateAR?: () => Promise<void> | void;
+    } | null;
+
+    if (!viewer?.activateAR) return;
+
+    setOpeningCamera(true);
+
+    try {
+      await viewer.activateAR();
+    } finally {
+      setTimeout(() => setOpeningCamera(false), 700);
+    }
+  };
+
   const arButtonLabel = justAdded
     ? 'Added to cart'
     : alreadyInCart
@@ -254,7 +272,7 @@ export function ARViewer() {
             <Glass className="flex items-center gap-2 px-4 py-2">
               <Info className="h-3.5 w-3.5 text-amber-300" />
               <span className="text-[11px] text-white/70">
-                Drag to rotate · Pinch to zoom · Tap AR for real space
+                Drag to rotate · Pinch to zoom · View on Table for camera
               </span>
             </Glass>
           </motion.div>
@@ -264,6 +282,49 @@ export function ARViewer() {
       {/* Controls */}
       <div className="absolute bottom-0 left-0 right-0 z-30 p-4">
         <div className="mx-auto max-w-md space-y-3">
+          <motion.button
+            type="button"
+            onClick={viewOnTable}
+            disabled={!ready || openingCamera}
+            whileTap={{ scale: 0.98 }}
+            animate={
+              ready
+                ? {
+                    boxShadow: [
+                      '0 0 0 0 rgba(251,191,36,0)',
+                      '0 0 0 8px rgba(251,191,36,0.08)',
+                      '0 0 0 0 rgba(251,191,36,0)',
+                    ],
+                  }
+                : undefined
+            }
+            transition={{
+              duration: 2.4,
+              repeat: Infinity,
+              ease: 'easeInOut',
+            }}
+            className="relative flex h-14 w-full items-center justify-center gap-3 overflow-hidden rounded-2xl border border-amber-300/50 bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-500 px-5 font-semibold text-stone-950 shadow-xl shadow-amber-900/40 disabled:cursor-wait disabled:opacity-50"
+          >
+            <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/25 to-transparent opacity-60" />
+
+            <span className="relative flex h-8 w-8 items-center justify-center rounded-full bg-stone-950/10">
+              {openingCamera ? (
+                <ScanLine className="h-4 w-4 animate-pulse" />
+              ) : (
+                <Camera className="h-4 w-4" />
+              )}
+            </span>
+
+            <span className="relative text-left">
+              <span className="block text-sm uppercase tracking-[0.14em]">
+                {openingCamera ? 'Opening Camera...' : 'View on Table'}
+              </span>
+              <span className="block text-[10px] font-medium tracking-wide text-stone-800/70">
+                Place this dish in your real space
+              </span>
+            </span>
+          </motion.button>
+
           <div className="flex items-center justify-center gap-2">
             <ControlBtn
               icon={<ZoomOut className="h-4 w-4" />}
@@ -279,16 +340,6 @@ export function ARViewer() {
               icon={<ZoomIn className="h-4 w-4" />}
               onClick={() => setZoom((z) => Math.min(2.2, z + 0.15))}
               label="Zoom in"
-            />
-            <ControlBtn
-              icon={<Maximize2 className="h-4 w-4" />}
-              onClick={() => {
-                const el = viewerRef.current as HTMLElement & {
-                  activateAR?: () => void;
-                } | null;
-                el?.activateAR?.();
-              }}
-              label="AR"
             />
           </div>
 

@@ -11,6 +11,7 @@ import { OrderStatusScreen } from '@/components/OrderStatus';
 import { Dashboard } from '@/components/Dashboard';
 import { StaffGate } from '@/components/StaffGate';
 import { GuestLiveTrackingHost } from '@/components/GuestLiveTrackingHost';
+import { LanguageSwitcher } from '@/components/LanguageSwitcher';
 
 const pageTransition = {
   initial: { opacity: 0, y: 12 },
@@ -43,6 +44,7 @@ function AppShell() {
   return (
     <div className="min-h-dvh bg-[#0a0908] text-white antialiased">
       <StaffGate />
+      <LanguageSwitcher />
       <GuestLiveTrackingHost />
       <AnimatePresence mode="wait">
         {view === 'loading' && (

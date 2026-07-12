@@ -61,6 +61,34 @@ export function ARViewer() {
   const [justAdded, setJustAdded] = useState(false);
   const [showHint, setShowHint] = useState(true);
 
+  // Prevent Android Chrome pull-to-refresh while using AR gestures.
+  useEffect(() => {
+    const html = document.documentElement;
+    const body = document.body;
+
+    const previous = {
+      htmlOverscroll: html.style.overscrollBehavior,
+      htmlOverflow: html.style.overflow,
+      bodyOverscroll: body.style.overscrollBehavior,
+      bodyOverflow: body.style.overflow,
+      bodyTouchAction: body.style.touchAction,
+    };
+
+    html.style.overscrollBehavior = 'none';
+    html.style.overflow = 'hidden';
+    body.style.overscrollBehavior = 'none';
+    body.style.overflow = 'hidden';
+    body.style.touchAction = 'none';
+
+    return () => {
+      html.style.overscrollBehavior = previous.htmlOverscroll;
+      html.style.overflow = previous.htmlOverflow;
+      body.style.overscrollBehavior = previous.bodyOverscroll;
+      body.style.overflow = previous.bodyOverflow;
+      body.style.touchAction = previous.bodyTouchAction;
+    };
+  }, []);
+
   useEffect(() => {
     if (customElements.get('model-viewer')) {
       setScriptLoaded(true);
@@ -139,7 +167,7 @@ export function ARViewer() {
       : 'Add to cart';
 
   return (
-    <div className="relative flex min-h-dvh flex-col bg-[#080706]">
+    <div className="ar-viewer fixed inset-0 flex h-dvh flex-col overflow-hidden bg-[#080706]">
       {/* Top bar */}
       <div className="absolute left-0 right-0 top-0 z-30 flex items-center justify-between p-4">
         <button
@@ -157,7 +185,7 @@ export function ARViewer() {
       </div>
 
       {/* 3D Stage */}
-      <div className="relative flex-1">
+      <div className="relative min-h-0 flex-1 touch-none overflow-hidden">
         {!ready && !loadError && (
           <div className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-4">
             <div className="h-12 w-12 animate-spin rounded-full border-2 border-amber-400/20 border-t-amber-400" />
@@ -189,7 +217,7 @@ export function ARViewer() {
             ar
             ar-modes="webxr scene-viewer quick-look"
             camera-controls
-            touch-action="pan-y"
+            touch-action="none"
             shadow-intensity="1"
             shadow-softness="0.8"
             exposure="1.1"
@@ -203,7 +231,9 @@ export function ARViewer() {
             style={{
               width: '100%',
               height: '100%',
-              minHeight: '70vh',
+              minHeight: '100%',
+              touchAction: 'none',
+              overscrollBehavior: 'none',
               background:
                 'radial-gradient(ellipse at center, #1a1510 0%, #080706 70%)',
               '--poster-color': 'transparent',

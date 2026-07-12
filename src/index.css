@@ -93,3 +93,12 @@ body::before {
   background-repeat: repeat;
   background-size: 180px;
 }
+
+/* Prevent pull-to-refresh and page gestures inside the AR viewer. */
+.ar-viewer,
+.ar-viewer model-viewer {
+  touch-action: none;
+  overscroll-behavior: none;
+  -webkit-user-select: none;
+  user-select: none;
+}

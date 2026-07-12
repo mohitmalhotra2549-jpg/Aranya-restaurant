@@ -14,7 +14,7 @@ import type { Dish } from '@/types';
 export const dishes: Dish[] = [
   {
     id: 'paneer-tikka',
-    name: 'Tandoori Paneer Tikka',
+    name: 'Grilled Sandwich',
     price: 420,
     description:
       'Hand-cut cottage cheese marinated in aged Kashmiri chilli, smoked yoghurt and royal spices, finished in a charcoal tandoor and served with mint chutney.',
@@ -40,7 +40,7 @@ export const dishes: Dish[] = [
   },
   {
     id: 'butter-chicken',
-    name: 'Butter Chicken Royale',
+    name: 'Chocolate Cake',
     price: 580,
     description:
       'Slow-braised free-range chicken in a velvety tomato-cashew gravy, tempered with white butter and fenugreek. A signature of the house.',
@@ -66,7 +66,7 @@ export const dishes: Dish[] = [
   },
   {
     id: 'hyderabadi-biryani',
-    name: 'Hyderabadi Dum Biryani',
+    name: 'Pastry',
     price: 640,
     description:
       'Fragrant basmati layered with tender lamb, saffron milk and caramelised onions, sealed and slow-cooked in the traditional dum style.',
@@ -93,7 +93,7 @@ export const dishes: Dish[] = [
   },
   {
     id: 'garlic-naan',
-    name: 'Smoked Garlic Naan',
+    name: 'Zinger Burger',
     price: 120,
     description:
       'Soft leavened flatbread brushed with clarified butter, roasted garlic and fresh coriander, baked against the walls of our clay tandoor.',
@@ -112,7 +112,7 @@ export const dishes: Dish[] = [
   },
   {
     id: 'mango-lassi',
-    name: 'Alphonso Mango Lassi',
+    name: 'Kulcha with Bhaji',
     price: 220,
     description:
       'Silken yoghurt blended with sun-ripened Alphonso mangoes, a whisper of cardamom and crushed pistachio. Served chilled.',

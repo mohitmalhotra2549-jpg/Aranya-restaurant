@@ -20,7 +20,7 @@ export const dishes: Dish[] = [
       'Hand-cut cottage cheese marinated in aged Kashmiri chilli, smoked yoghurt and royal spices, finished in a charcoal tandoor and served with mint chutney.',
     category: 'Starters',
     image:
-      'https://images.pexels.com/photos/20395267/pexels-photo-20395267.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=800&w=1200',
+      './images/grilled-sandwich.jpg',
     model3d: './models/grilled-sandwich.glb',
     dietary: 'veg',
     spiceLevel: 2,
@@ -46,7 +46,7 @@ export const dishes: Dish[] = [
       'Slow-braised free-range chicken in a velvety tomato-cashew gravy, tempered with white butter and fenugreek. A signature of the house.',
     category: 'Mains',
     image:
-      'https://images.pexels.com/photos/11188417/pexels-photo-11188417.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=800&w=1200',
+      './images/chocolate-cake.jpg',
     model3d: './models/chocolate-cake.glb',
     dietary: 'non-veg',
     spiceLevel: 2,
@@ -72,7 +72,7 @@ export const dishes: Dish[] = [
       'Fragrant basmati layered with tender lamb, saffron milk and caramelised onions, sealed and slow-cooked in the traditional dum style.',
     category: 'Rice',
     image:
-      'https://images.pexels.com/photos/28909537/pexels-photo-28909537.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=800&w=1200',
+      './images/pastry.jpg',
     model3d: './models/pastry.glb',
     dietary: 'non-veg',
     spiceLevel: 3,
@@ -118,7 +118,7 @@ export const dishes: Dish[] = [
       'Silken yoghurt blended with sun-ripened Alphonso mangoes, a whisper of cardamom and crushed pistachio. Served chilled.',
     category: 'Beverages',
     image:
-      'https://images.pexels.com/photos/8813997/pexels-photo-8813997.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=900&w=700',
+      './images/kulcha-with-bhaji.jpg',
     model3d: './models/kulcha-with-bhaji.glb',
     dietary: 'veg',
     spiceLevel: 0,

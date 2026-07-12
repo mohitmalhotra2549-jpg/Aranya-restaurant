@@ -17,7 +17,8 @@ export const dishes: Dish[] = [
     name: 'Grilled Sandwich',
     price: 420,
     description:
-      'ताज़ी सब्ज़ियों, पिघले हुए चीज़ और खास हर्ब स्प्रेड से भरा कुरकुरा ग्रिल्ड सैंडविच।',
+      
+      'Crisp golden bread layered with fresh vegetables, melted cheese and our signature herb spread, grilled to perfection.',
     category: 'Starters',
     image:
       './images/grilled-sandwich.jpg',
@@ -43,7 +44,8 @@ export const dishes: Dish[] = [
     name: 'Chocolate Cake',
     price: 580,
     description:
-      'मुलायम चॉकलेट केक, सिल्की चॉकलेट गनाश और कोको की खूबसूरत फिनिश के साथ।',
+      
+      'A rich and indulgent chocolate cake with a moist crumb, silky ganache and a delicate cocoa finish.',
     category: 'Mains',
     image:
       './images/chocolate-cake.jpg',
@@ -69,7 +71,8 @@ export const dishes: Dish[] = [
     name: 'Pastry',
     price: 640,
     description:
-      'हल्की और मुलायम पेस्ट्री, स्मूद क्रीम और संतुलित मिठास के साथ।',
+      
+      'A light, flaky pastry finished with smooth cream and an elegant touch of sweetness.',
     category: 'Rice',
     image:
       './images/pastry.jpg',
@@ -96,7 +99,8 @@ export const dishes: Dish[] = [
     name: 'Zinger Burger',
     price: 120,
     description:
-      'कुरकुरी मसालेदार चिकन फिलेट, चीज़, ताज़ी लेट्यूस और क्रीमी सॉस के साथ ज़िंगर बर्गर।',
+      
+      'A crunchy spiced chicken fillet with crisp lettuce, cheese and creamy sauce, served inside a toasted sesame bun.',
     category: 'Breads',
     image:
       './images/zinger-burger.jpg',
@@ -115,7 +119,8 @@ export const dishes: Dish[] = [
     name: 'Kulcha with Bhaji',
     price: 220,
     description:
-      'तंदूर में पका कुलचा, मसालेदार भाजी, ताज़े प्याज़ और हाउस पिकल के साथ।',
+      
+      'Tandoor-baked kulcha served with deeply spiced bhaji, fresh onions and house pickle.',
     category: 'Beverages',
     image:
       './images/kulcha-with-bhaji.jpg',
@@ -135,7 +140,8 @@ export const dishes: Dish[] = [
     name: 'Momos',
     price: 190,
     description:
-      'मसालेदार सब्ज़ियों से भरे स्टीम्ड मोमोज़, तीखी हाउस चिली डिप के साथ।',
+      
+      'Delicate steamed dumplings filled with seasoned vegetables and served with a fiery house chilli dip.',
     category: 'Snacks',
     image:
       'https://images.pexels.com/photos/18803177/pexels-photo-18803177.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=800&w=1200',

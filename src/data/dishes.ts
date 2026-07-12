@@ -99,7 +99,7 @@ export const dishes: Dish[] = [
       'Soft leavened flatbread brushed with clarified butter, roasted garlic and fresh coriander, baked against the walls of our clay tandoor.',
     category: 'Breads',
     image:
-      'https://images.pexels.com/photos/20446413/pexels-photo-20446413.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=800&w=1200',
+      './images/zinger-burger.jpg',
     model3d: './models/zinger-burger.glb',
     dietary: 'veg',
     spiceLevel: 0,

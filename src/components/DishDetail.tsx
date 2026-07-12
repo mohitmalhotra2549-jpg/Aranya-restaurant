@@ -93,9 +93,9 @@ export function DishDetail() {
           </button>
           <Button
             variant="secondary"
-            size="sm"
+            size="md"
             onClick={() => setView('ar')}
-            className="backdrop-blur-md"
+            className="h-11 border border-amber-300/55 bg-stone-950/90 px-5 text-amber-100 shadow-xl shadow-black/50 ring-1 ring-amber-300/15 backdrop-blur-xl"
           >
             <View className="h-3.5 w-3.5" />
             View in AR

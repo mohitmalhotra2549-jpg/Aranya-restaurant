@@ -54,7 +54,7 @@ export function DishCard({ dish, index = 0 }: DishCardProps) {
                 e.stopPropagation();
                 selectDish(dish.id, 'ar');
               }}
-              className="absolute right-3 top-3 flex h-9 w-9 items-center justify-center rounded-full border border-white/15 bg-black/40 text-white backdrop-blur-md transition hover:border-amber-400/40 hover:bg-black/60"
+              className="absolute right-3 top-3 flex h-10 items-center justify-center gap-2 rounded-full border border-amber-300/60 bg-stone-950/90 px-4 text-[10px] font-semibold uppercase tracking-wider text-amber-100 shadow-xl shadow-black/50 backdrop-blur-xl transition hover:border-amber-200/80 hover:bg-black"
               aria-label="View in AR"
             >
               <View className="h-3.5 w-3.5" />

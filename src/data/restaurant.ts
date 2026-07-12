@@ -31,11 +31,10 @@ export const STAFF_SESSION_HOURS = 12;
 
 export const categories = [
   'All',
-  'Starters',
-  'Mains',
-  'Breads',
-  'Rice',
-  'Beverages',
+  'Snacks',
+  'Burgers',
+  'Indian',
+  'Desserts',
 ] as const;
 
 export type Category = (typeof categories)[number];

@@ -21,7 +21,7 @@ export const dishes: Dish[] = [
     category: 'Starters',
     image:
       'https://images.pexels.com/photos/20395267/pexels-photo-20395267.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=800&w=1200',
-    model3d: 'https://modelviewer.dev/shared-assets/models/Astronaut.glb',
+    model3d: './models/grilled-sandwich.glb',
     dietary: 'veg',
     spiceLevel: 2,
     ingredients: [
@@ -47,7 +47,7 @@ export const dishes: Dish[] = [
     category: 'Mains',
     image:
       'https://images.pexels.com/photos/11188417/pexels-photo-11188417.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=800&w=1200',
-    model3d: 'https://modelviewer.dev/shared-assets/models/NeilArmstrong.glb',
+    model3d: './models/chocolate-cake.glb',
     dietary: 'non-veg',
     spiceLevel: 2,
     ingredients: [
@@ -73,7 +73,7 @@ export const dishes: Dish[] = [
     category: 'Rice',
     image:
       'https://images.pexels.com/photos/28909537/pexels-photo-28909537.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=800&w=1200',
-    model3d: 'https://modelviewer.dev/shared-assets/models/RobotExpressive.glb',
+    model3d: './models/pastry.glb',
     dietary: 'non-veg',
     spiceLevel: 3,
     ingredients: [
@@ -100,7 +100,7 @@ export const dishes: Dish[] = [
     category: 'Breads',
     image:
       'https://images.pexels.com/photos/20446413/pexels-photo-20446413.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=800&w=1200',
-    model3d: 'https://modelviewer.dev/shared-assets/models/shishkebab.glb',
+    model3d: './models/zinger-burger.glb',
     dietary: 'veg',
     spiceLevel: 0,
     ingredients: ['Maida', 'Yeast', 'Garlic', 'Ghee', 'Coriander', 'Nigella seeds'],
@@ -119,13 +119,40 @@ export const dishes: Dish[] = [
     category: 'Beverages',
     image:
       'https://images.pexels.com/photos/8813997/pexels-photo-8813997.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=900&w=700',
-    model3d: 'https://modelviewer.dev/shared-assets/models/reflective-sphere.glb',
+    model3d: './models/kulcha-with-bhaji.glb',
     dietary: 'veg',
     spiceLevel: 0,
     ingredients: ['Alphonso mango', 'Yoghurt', 'Cardamom', 'Honey', 'Pistachio'],
     allergens: ['Dairy', 'Tree nuts'],
     prepTime: 8,
     calories: 260,
+    featured: false,
+    available: true,
+  },
+
+  {
+    id: 'momos',
+    name: 'Momos',
+    price: 190,
+    description:
+      'Steamed dumplings filled with seasoned vegetables and served with a fiery house chilli dip.',
+    category: 'Snacks',
+    image:
+      'https://images.pexels.com/photos/18803177/pexels-photo-18803177.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=800&w=1200',
+    model3d: './models/momos.glb',
+    dietary: 'veg',
+    spiceLevel: 2,
+    ingredients: [
+      'Flour',
+      'Cabbage',
+      'Carrot',
+      'Spring onion',
+      'Garlic',
+      'Chilli dip',
+    ],
+    allergens: ['Gluten'],
+    prepTime: 15,
+    calories: 290,
     featured: false,
     available: true,
   },

@@ -94,18 +94,24 @@ export function ARViewer() {
   }, []);
 
   useEffect(() => {
+    // Model Viewer is bundled with the app; no external CDN is required.
     if (customElements.get('model-viewer')) {
       setScriptLoaded(true);
       return;
     }
-    const script = document.createElement('script');
-    script.type = 'module';
-    script.src =
-      'https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js';
-    script.onload = () => setScriptLoaded(true);
-    script.onerror = () => setLoadError(true);
-    document.head.appendChild(script);
+
+    void customElements
+      .whenDefined('model-viewer')
+      .then(() => setScriptLoaded(true))
+      .catch(() => setLoadError(true));
   }, []);
+
+  useEffect(() => {
+    // Never leave guests on an endless blank screen.
+    if (ready || loadError) return;
+    const timeout = window.setTimeout(() => setLoadError(true), 15000);
+    return () => window.clearTimeout(timeout);
+  }, [ready, loadError, dish?.model3d]);
 
   useEffect(() => {
     const t = setTimeout(() => setShowHint(false), 4000);

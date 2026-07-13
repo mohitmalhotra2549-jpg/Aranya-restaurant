@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import '@google/model-viewer';
 import { motion } from 'framer-motion';
 import {
   ArrowLeft,
@@ -55,23 +56,24 @@ declare global {
 export function ARViewer() {
   // Load Google's model-viewer web component once.
   useEffect(() => {
-    if (customElements.get('model-viewer')) return;
+    let cancelled = false;
 
-    const existing = document.querySelector(
-      'script[data-aaranya-model-viewer]',
-    );
+    const timeout = window.setTimeout(() => {
+      if (!cancelled) setLoadError(true);
+    }, 15000);
 
-    if (existing) return;
-
-    const script = document.createElement('script');
-    script.type = 'module';
-    script.src =
-      'https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js';
-    script.dataset.aaranyaModelViewer = 'true';
-    document.head.appendChild(script);
+    customElements
+      .whenDefined('model-viewer')
+      .then(() => {
+        if (!cancelled) setScriptLoaded(true);
+      })
+      .catch(() => {
+        if (!cancelled) setLoadError(true);
+      });
 
     return () => {
-      // Keep script loaded while navigating between dishes.
+      cancelled = true;
+      window.clearTimeout(timeout);
     };
   }, []);
 

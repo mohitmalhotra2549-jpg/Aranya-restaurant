@@ -234,8 +234,14 @@ export function ARViewer() {
             ref={viewerRef as React.RefObject<HTMLElement>}
             src={dish.model3d}
             alt={dish.name}
-            ar
-            ar-modes="webxr quick-look"
+            ar={arSupport === 'supported' ? true : undefined}
+            ar-modes={
+              arSupport === 'supported'
+                ? /iPad|iPhone|iPod/.test(navigator.userAgent)
+                  ? 'quick-look'
+                  : 'webxr'
+                : undefined
+            }
             camera-controls
             touch-action="none"
             shadow-intensity="1"

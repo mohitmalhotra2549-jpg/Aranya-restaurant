@@ -214,7 +214,7 @@ export function ARViewer() {
             src={dish.model3d}
             alt={dish.name}
             ar
-            ar-modes="webxr quick-look"
+            ar-modes="webxr scene-viewer quick-look"
             camera-controls
             touch-action="none"
             shadow-intensity="1"

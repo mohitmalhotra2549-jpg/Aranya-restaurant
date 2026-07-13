@@ -53,6 +53,28 @@ declare global {
 }
 
 export function ARViewer() {
+  // Load Google's model-viewer web component once.
+  useEffect(() => {
+    if (customElements.get('model-viewer')) return;
+
+    const existing = document.querySelector(
+      'script[data-aaranya-model-viewer]',
+    );
+
+    if (existing) return;
+
+    const script = document.createElement('script');
+    script.type = 'module';
+    script.src =
+      'https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js';
+    script.dataset.aaranyaModelViewer = 'true';
+    document.head.appendChild(script);
+
+    return () => {
+      // Keep script loaded while navigating between dishes.
+    };
+  }, []);
+
   const { selectedDishId, setView, addToCart, cart } = useApp();
   const dish = useDish(selectedDishId);
   const viewerRef = useRef<HTMLElement | null>(null);

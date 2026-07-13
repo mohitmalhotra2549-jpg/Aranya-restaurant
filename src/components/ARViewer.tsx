@@ -62,6 +62,7 @@ export function ARViewer() {
   const [justAdded, setJustAdded] = useState(false);
   const [showHint, setShowHint] = useState(true);
   const [openingCamera, setOpeningCamera] = useState(false);
+  const [arUnavailable, setArUnavailable] = useState(false);
 
   // Prevent Android Chrome pull-to-refresh while using AR gestures.
   useEffect(() => {
@@ -233,7 +234,7 @@ export function ARViewer() {
             src={dish.model3d}
             alt={dish.name}
             ar
-            ar-modes="webxr scene-viewer quick-look"
+            ar-modes="webxr quick-look"
             camera-controls
             touch-action="none"
             shadow-intensity="1"
@@ -368,6 +369,34 @@ export function ARViewer() {
           )}
         </div>
       </div>
+
+      {arUnavailable && (
+        <div className="absolute inset-0 z-[90] flex items-end justify-center bg-black/75 p-4 backdrop-blur-sm">
+          <Glass
+            intensity="strong"
+            className="w-full max-w-sm border-amber-400/25 p-5"
+          >
+            <p className="text-[10px] uppercase tracking-[0.2em] text-amber-300/70">
+              3D Preview Available
+            </p>
+            <h2 className="mt-2 font-serif text-2xl text-white">
+              Camera AR is not supported
+            </h2>
+            <p className="mt-2 text-sm leading-relaxed text-white/50">
+              No installation is needed. You can still rotate, zoom and inspect
+              this dish in the interactive 3D preview.
+            </p>
+            <Button
+              variant="gold"
+              fullWidth
+              className="mt-5"
+              onClick={() => setArUnavailable(false)}
+            >
+              Continue in 3D
+            </Button>
+          </Glass>
+        </div>
+      )}
     </div>
   );
 }

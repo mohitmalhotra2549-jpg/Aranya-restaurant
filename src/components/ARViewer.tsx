@@ -7,6 +7,8 @@ import {
   ZoomOut,
   ShoppingBag,
   Info,
+  Camera,
+  ScanLine,
 } from 'lucide-react';
 import { useApp } from '@/store/AppContext';
 import { useDish } from '@/hooks/useFilteredDishes';
@@ -59,6 +61,7 @@ export function ARViewer() {
   const [zoom, setZoom] = useState(1);
   const [justAdded, setJustAdded] = useState(false);
   const [showHint, setShowHint] = useState(true);
+  const [openingCamera, setOpeningCamera] = useState(false);
 
   // Prevent Android Chrome pull-to-refresh while using AR gestures.
   useEffect(() => {
@@ -159,6 +162,64 @@ export function ARViewer() {
 
   const goToCart = () => setView('cart');
 
+  const viewOnTable = async () => {
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+
+    if (!isIOS) {
+      const xr = (navigator as Navigator & {
+        xr?: {
+          isSessionSupported: (mode: string) => Promise<boolean>;
+        };
+      }).xr;
+
+      if (!xr?.isSessionSupported) {
+        window.alert(
+          'Camera AR is not supported on this phone. Please continue with the interactive 3D preview.'
+        );
+        return;
+      }
+
+      try {
+        const supported = await xr.isSessionSupported('immersive-ar');
+
+        if (!supported) {
+          window.alert(
+            'Camera AR is not supported on this phone. Please continue with the interactive 3D preview.'
+          );
+          return;
+        }
+      } catch {
+        window.alert(
+          'Camera AR is unavailable. Please continue with the interactive 3D preview.'
+        );
+        return;
+      }
+    }
+
+    const viewer = viewerRef.current as HTMLElement & {
+      activateAR?: () => Promise<void> | void;
+    } | null;
+
+    if (!viewer?.activateAR) {
+      window.alert(
+        'Camera AR is unavailable. Please continue with the interactive 3D preview.'
+      );
+      return;
+    }
+
+    setOpeningCamera(true);
+
+    try {
+      await viewer.activateAR();
+    } catch {
+      window.alert(
+        'Camera AR could not open. You can still rotate and zoom the dish in 3D.'
+      );
+    } finally {
+      window.setTimeout(() => setOpeningCamera(false), 700);
+    }
+  };
+
   const arButtonLabel = justAdded
     ? 'Added to cart'
     : alreadyInCart
@@ -215,6 +276,9 @@ export function ARViewer() {
             alt={dish.name}
             ar
             ar-modes="webxr quick-look"
+            ar-placement="floor"
+            ar-scale="auto"
+            xr-environment
             camera-controls
             touch-action="none"
             shadow-intensity="1"
@@ -263,6 +327,29 @@ export function ARViewer() {
       {/* Controls */}
       <div className="absolute bottom-0 left-0 right-0 z-30 p-4">
         <div className="mx-auto max-w-md space-y-3">
+
+          <motion.button
+            type="button"
+            onClick={viewOnTable}
+            disabled={!ready || openingCamera}
+            whileTap={{ scale: 0.98 }}
+            className="flex h-14 w-full items-center justify-center gap-3 rounded-2xl border border-amber-300/50 bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-500 px-5 font-semibold text-stone-950 shadow-xl shadow-amber-900/40 disabled:opacity-50"
+          >
+            {openingCamera ? (
+              <ScanLine className="h-5 w-5 animate-pulse" />
+            ) : (
+              <Camera className="h-5 w-5" />
+            )}
+
+            <span className="text-left">
+              <span className="block text-sm uppercase tracking-[0.14em]">
+                {openingCamera ? 'Opening Camera...' : 'View on Table'}
+              </span>
+              <span className="block text-[10px] font-medium text-stone-800/70">
+                Place this dish in your real space
+              </span>
+            </span>
+          </motion.button>
 
           <div className="flex items-center justify-center gap-2">
             <ControlBtn

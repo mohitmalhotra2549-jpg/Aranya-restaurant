@@ -15,7 +15,7 @@ export const dishes: Dish[] = [
   {
     id: 'paneer-tikka',
     name: 'Grilled Sandwich',
-    price: 420,
+    price: 150,
     description:
       
       'Crisp golden bread layered with fresh vegetables, melted cheese and our signature herb spread, grilled to perfection.',
@@ -42,7 +42,7 @@ export const dishes: Dish[] = [
   {
     id: 'butter-chicken',
     name: 'Chocolate Cake',
-    price: 580,
+    price: 640,
     description:
       
       'A rich and indulgent chocolate cake with a moist crumb, silky ganache and a delicate cocoa finish.',
@@ -69,7 +69,7 @@ export const dishes: Dish[] = [
   {
     id: 'hyderabadi-biryani',
     name: 'Pastry',
-    price: 640,
+    price: 80,
     description:
       
       'A light, flaky pastry finished with smooth cream and an elegant touch of sweetness.',
@@ -97,7 +97,7 @@ export const dishes: Dish[] = [
   {
     id: 'garlic-naan',
     name: 'Zinger Burger',
-    price: 120,
+    price: 50,
     description:
       
       'A crunchy spiced chicken fillet with crisp lettuce, cheese and creamy sauce, served inside a toasted sesame bun.',
@@ -117,7 +117,7 @@ export const dishes: Dish[] = [
   {
     id: 'mango-lassi',
     name: 'Kulcha with Bhaji',
-    price: 220,
+    price: 200,
     description:
       
       'Tandoor-baked kulcha served with deeply spiced bhaji, fresh onions and house pickle.',
@@ -138,7 +138,7 @@ export const dishes: Dish[] = [
   {
     id: 'momos',
     name: 'Momos',
-    price: 190,
+    price: 100,
     description:
       
       'Delicate steamed dumplings filled with seasoned vegetables and served with a fiery house chilli dip.',

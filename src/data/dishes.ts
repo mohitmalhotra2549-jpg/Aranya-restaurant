@@ -19,7 +19,7 @@ export const dishes: Dish[] = [
     description:
       
       'Crisp golden bread layered with fresh vegetables, melted cheese and our signature herb spread, grilled to perfection.',
-    category: 'Starters',
+    category: 'Snacks',
     image:
       './images/grilled-sandwich.jpg',
     model3d: './models/grilled-sandwich.glb',
@@ -46,7 +46,7 @@ export const dishes: Dish[] = [
     description:
       
       'A rich and indulgent chocolate cake with a moist crumb, silky ganache and a delicate cocoa finish.',
-    category: 'Mains',
+    category: 'Desserts',
     image:
       './images/chocolate-cake.jpg',
     model3d: './models/chocolate-cake.glb',
@@ -73,7 +73,7 @@ export const dishes: Dish[] = [
     description:
       
       'A light, flaky pastry finished with smooth cream and an elegant touch of sweetness.',
-    category: 'Rice',
+    category: 'Desserts',
     image:
       './images/pastry.jpg',
     model3d: './models/pastry.glb',
@@ -101,7 +101,7 @@ export const dishes: Dish[] = [
     description:
       
       'A crunchy spiced chicken fillet with crisp lettuce, cheese and creamy sauce, served inside a toasted sesame bun.',
-    category: 'Breads',
+    category: 'Burgers',
     image:
       './images/zinger-burger.jpg',
     model3d: './models/zinger-burger.glb',
@@ -121,7 +121,7 @@ export const dishes: Dish[] = [
     description:
       
       'Tandoor-baked kulcha served with deeply spiced bhaji, fresh onions and house pickle.',
-    category: 'Beverages',
+    category: 'Indian',
     image:
       './images/kulcha-with-bhaji.jpg',
     model3d: './models/kulcha-with-bhaji.glb',

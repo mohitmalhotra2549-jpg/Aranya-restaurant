@@ -9,6 +9,7 @@ import {
   Info,
   Camera,
   ScanLine,
+  Smartphone,
 } from 'lucide-react';
 import { useApp } from '@/store/AppContext';
 import { useDish } from '@/hooks/useFilteredDishes';
@@ -283,6 +284,7 @@ export function ARViewer() {
       {/* Controls */}
       <div className="absolute bottom-0 left-0 right-0 z-30 p-4">
         <div className="mx-auto max-w-md space-y-3">
+          {arSupport === 'supported' && (
           <motion.button
             type="button"
             onClick={viewOnTable}
@@ -325,6 +327,23 @@ export function ARViewer() {
               </span>
             </span>
           </motion.button>
+          )}
+
+          {arSupport === 'unsupported' && (
+            <div className="flex min-h-14 w-full items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-3">
+              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-white/5 text-white/45">
+                <Smartphone className="h-4 w-4" />
+              </span>
+              <span>
+                <span className="block text-xs font-medium uppercase tracking-[0.14em] text-white/70">
+                  3D Preview Only
+                </span>
+                <span className="mt-0.5 block text-[10px] text-white/35">
+                  Camera AR is unavailable on this phone. No installation needed.
+                </span>
+              </span>
+            </div>
+          )}
 
           <div className="flex items-center justify-center gap-2">
             <ControlBtn

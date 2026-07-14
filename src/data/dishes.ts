@@ -21,7 +21,7 @@ export const dishes: Dish[] = [
       'Crisp golden bread layered with fresh vegetables, melted cheese and our signature herb spread, grilled to perfection.',
     category: 'Snacks',
     image:
-      './images/grilled-sandwich.jpg',
+      './images/optimized/grilled-sandwich.webp',
     model3d: './models/grilled-sandwich.glb',
     dietary: 'veg',
     spiceLevel: 2,
@@ -48,7 +48,7 @@ export const dishes: Dish[] = [
       'A rich and indulgent chocolate cake with a moist crumb, silky ganache and a delicate cocoa finish.',
     category: 'Desserts',
     image:
-      './images/chocolate-cake.jpg',
+      './images/optimized/chocolate-cake.webp',
     model3d: './models/chocolate-cake.glb',
     dietary: 'non-veg',
     spiceLevel: 2,
@@ -75,7 +75,7 @@ export const dishes: Dish[] = [
       'A light, flaky pastry finished with smooth cream and an elegant touch of sweetness.',
     category: 'Desserts',
     image:
-      './images/pastry.jpg',
+      './images/optimized/pastry.webp',
     model3d: './models/pastry.glb',
     dietary: 'non-veg',
     spiceLevel: 3,
@@ -103,7 +103,7 @@ export const dishes: Dish[] = [
       'A crunchy spiced chicken fillet with crisp lettuce, cheese and creamy sauce, served inside a toasted sesame bun.',
     category: 'Burgers',
     image:
-      './images/zinger-burger.jpg',
+      './images/optimized/zinger-burger.webp',
     model3d: './models/zinger-burger.glb',
     dietary: 'veg',
     spiceLevel: 0,
@@ -123,7 +123,7 @@ export const dishes: Dish[] = [
       'Tandoor-baked kulcha served with deeply spiced bhaji, fresh onions and house pickle.',
     category: 'Indian',
     image:
-      './images/kulcha-with-bhaji.jpg',
+      './images/optimized/kulcha-with-bhaji.webp',
     model3d: './models/kulcha-with-bhaji.glb',
     dietary: 'veg',
     spiceLevel: 0,

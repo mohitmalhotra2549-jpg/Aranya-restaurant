@@ -62,6 +62,8 @@ export function ARViewer() {
   const [justAdded, setJustAdded] = useState(false);
   const [showHint, setShowHint] = useState(true);
   const [openingCamera, setOpeningCamera] = useState(false);
+  const [showCompatibilityMessage, setShowCompatibilityMessage] =
+    useState(false);
 
   // Prevent Android Chrome pull-to-refresh while using AR gestures.
   useEffect(() => {
@@ -165,33 +167,24 @@ export function ARViewer() {
   const viewOnTable = async () => {
     const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
 
+    const xr = (navigator as Navigator & {
+      xr?: {
+        isSessionSupported: (mode: string) => Promise<boolean>;
+      };
+    }).xr;
+
     if (!isIOS) {
-      const xr = (navigator as Navigator & {
-        xr?: {
-          isSessionSupported: (mode: string) => Promise<boolean>;
-        };
-      }).xr;
-
-      if (!xr?.isSessionSupported) {
-        window.alert(
-          'Camera AR is not supported on this phone. Please continue with the interactive 3D preview.'
-        );
-        return;
-      }
-
       try {
-        const supported = await xr.isSessionSupported('immersive-ar');
+        const supported =
+          !!xr?.isSessionSupported &&
+          await xr.isSessionSupported('immersive-ar');
 
         if (!supported) {
-          window.alert(
-            'Camera AR is not supported on this phone. Please continue with the interactive 3D preview.'
-          );
+          setShowCompatibilityMessage(true);
           return;
         }
       } catch {
-        window.alert(
-          'Camera AR is unavailable. Please continue with the interactive 3D preview.'
-        );
+        setShowCompatibilityMessage(true);
         return;
       }
     }
@@ -201,9 +194,7 @@ export function ARViewer() {
     } | null;
 
     if (!viewer?.activateAR) {
-      window.alert(
-        'Camera AR is unavailable. Please continue with the interactive 3D preview.'
-      );
+      setShowCompatibilityMessage(true);
       return;
     }
 
@@ -212,11 +203,9 @@ export function ARViewer() {
     try {
       await viewer.activateAR();
     } catch {
-      window.alert(
-        'Camera AR could not open. You can still rotate and zoom the dish in 3D.'
-      );
+      setShowCompatibilityMessage(true);
     } finally {
-      window.setTimeout(() => setOpeningCamera(false), 700);
+      setTimeout(() => setOpeningCamera(false), 700);
     }
   };
 
@@ -394,6 +383,37 @@ export function ARViewer() {
           )}
         </div>
       </div>
+      {showCompatibilityMessage && (
+        <div className="absolute inset-0 z-[100] flex items-end justify-center bg-black/80 p-4 backdrop-blur-sm">
+          <Glass
+            intensity="strong"
+            className="w-full max-w-sm border-amber-400/30 p-5"
+          >
+            <p className="text-[10px] uppercase tracking-[0.2em] text-amber-300/70">
+              3D View Available
+            </p>
+
+            <h2 className="mt-2 font-serif text-2xl text-white">
+              Your device is not compatible with AR
+            </h2>
+
+            <p className="mt-2 text-sm leading-relaxed text-white/55">
+              You can only view the interactive 3D model on this device.
+              Rotate, zoom and inspect the dish without installing anything.
+            </p>
+
+            <Button
+              variant="gold"
+              fullWidth
+              className="mt-5"
+              onClick={() => setShowCompatibilityMessage(false)}
+            >
+              Continue with 3D View
+            </Button>
+          </Glass>
+        </div>
+      )}
+
     </div>
   );
 }
